@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Hat Haven</title>
   <style>
     body {
@@ -29,14 +29,20 @@
       color: white;
       text-decoration: none;
       font-weight: bold;
+      cursor: pointer;
       transition: color 0.3s;
     }
     nav a:hover {
       color: #f0c330;
     }
+    nav a.active {
+      color: #f0c330;
+      border-bottom: 2px solid #f0c330;
+      padding-bottom: 4px;
+    }
     .hero {
       background: url('https://images.unsplash.com/photo-1618250126805-3132e843c4eb') center/cover no-repeat;
-      height: 400px;
+      height: 300px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -45,11 +51,16 @@
       font-weight: bold;
       text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
     }
+    .content-section {
+      padding: 2rem;
+      max-width: 1200px;
+      margin: auto;
+    }
     .products {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 2rem;
-      padding: 3rem 2rem;
+      margin-top: 2rem;
     }
     .product {
       background: white;
@@ -107,13 +118,6 @@
     #cart h3 {
       margin-top: 0;
     }
-    footer {
-      background: #1a1a1a;
-      color: white;
-      text-align: center;
-      padding: 1.5rem;
-      margin-top: 3rem;
-    }
     .checkout-button {
       background: #f0c330;
       color: #111;
@@ -122,9 +126,19 @@
       border-radius: 25px;
       cursor: pointer;
       margin-top: 1rem;
+      width: 100%;
+      font-weight: bold;
+      font-size: 1rem;
     }
     .checkout-button:hover {
       background: #e2b82b;
+    }
+    footer {
+      background: #1a1a1a;
+      color: white;
+      text-align: center;
+      padding: 1.5rem;
+      margin-top: 3rem;
     }
   </style>
 </head>
@@ -134,14 +148,67 @@
     <p>Snapbacks & Trucker Hats Only</p>
   </header>
   <nav>
-    <a href="#">Home</a>
-    <a href="#products">Shop</a>
-    <a href="cart.html">Cart</a>
-    <a href="#contact">Contact</a>
+    <a id="nav-home" class="active">Home</a>
+    <a id="nav-shop">Shop</a>
+    <a href="cart.html" id="nav-cart">Cart</a>
+    <a id="nav-contact">Contact</a>
   </nav>
-  <div class="hero">
-    Trucker & Snapback Styles Only
-  </div>
+
+  <div id="hero" class="hero">Trucker & Snapback Styles Only</div>
+
+  <main>
+    <section id="home-section" class="content-section">
+      <h2>Welcome to Hat Haven!</h2>
+      <p>Your one-stop shop for all the best trucker and snapback hats.</p>
+    </section>
+
+    <section id="shop-section" class="content-section" style="display:none;">
+      <h2>Shop Hats</h2>
+      <div class="products">
+        <div class="product">
+          <img src="https://images.unsplash.com/photo-1581317080739-ec3b7e7c47df" alt="Classic Trucker Hat" />
+          <h3>Classic Trucker Hat</h3>
+          <p>$39.99</p>
+          <button onclick="addToCart('Classic Trucker Hat', 39.99)">Add to Cart</button>
+        </div>
+        <div class="product">
+          <img src="https://images.unsplash.com/photo-1607860101385-fd160a85e3cc" alt="Modern Snapback" />
+          <h3>Modern Snapback</h3>
+          <p>$29.99</p>
+          <button onclick="addToCart('Modern Snapback', 29.99)">Add to Cart</button>
+        </div>
+        <div class="product">
+          <img src="https://images.unsplash.com/photo-1621826581384-5c589ef5b9a7" alt="Vintage Snapback" />
+          <h3>Vintage Snapback</h3>
+          <p>$34.99</p>
+          <button onclick="addToCart('Vintage Snapback', 34.99)">Add to Cart</button>
+        </div>
+        <div class="product">
+          <img src="https://images.unsplash.com/photo-1583454110551-21b5f6bd28d1" alt="Mesh Trucker Hat" />
+          <h3>Mesh Trucker Hat</h3>
+          <p>$27.99</p>
+          <button onclick="addToCart('Mesh Trucker Hat', 27.99)">Add to Cart</button>
+        </div>
+        <div class="product">
+          <img src="https://images.unsplash.com/photo-1587740896330-7f1a31a3d2c0" alt="Flatbill Snapback" />
+          <h3>Flatbill Snapback</h3>
+          <p>$32.99</p>
+          <button onclick="addToCart('Flatbill Snapback', 32.99)">Add to Cart</button>
+        </div>
+        <div class="product">
+          <img src="https://images.unsplash.com/photo-1624461607821-1c9aa1a82ce8" alt="Retro Trucker Hat" />
+          <h3>Retro Trucker Hat</h3>
+          <p>$31.99</p>
+          <button onclick="addToCart('Retro Trucker Hat', 31.99)">Add to Cart</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact-section" class="content-section" style="display:none;">
+      <h2>Contact Us</h2>
+      <p>Email us at <a href="mailto:info@hathaven.com">info@hathaven.com</a></p>
+    </section>
+  </main>
 
   <div id="cart">
     <h3>Shopping Cart</h3>
@@ -150,11 +217,7 @@
     <button class="checkout-button" onclick="goToCheckout()">Checkout</button>
   </div>
 
-  <section id="products" class="products">
-    <!-- Products remain unchanged -->
-    <!-- (omitted for brevity in this update) -->
-  </section>
-  <footer id="contact">
+  <footer>
     <p>&copy; 2025 Hat Haven | Contact: info@hathaven.com</p>
   </footer>
 
@@ -187,14 +250,50 @@
       window.location.href = 'cart.html';
     }
 
+    // Simple tab switching for nav
+    const navHome = document.getElementById('nav-home');
+    const navShop = document.getElementById('nav-shop');
+    const navContact = document.getElementById('nav-contact');
+
+    const homeSection = document.getElementById('home-section');
+    const shopSection = document.getElementById('shop-section');
+    const contactSection = document.getElementById('contact-section');
+
+    navHome.onclick = () => {
+      navHome.classList.add('active');
+      navShop.classList.remove('active');
+      navContact.classList.remove('active');
+      homeSection.style.display = 'block';
+      shopSection.style.display = 'none';
+      contactSection.style.display = 'none';
+    };
+
+    navShop.onclick = () => {
+      navHome.classList.remove('active');
+      navShop.classList.add('active');
+      navContact.classList.remove('active');
+      homeSection.style.display = 'none';
+      shopSection.style.display = 'block';
+      contactSection.style.display = 'none';
+    };
+
+    navContact.onclick = () => {
+      navHome.classList.remove('active');
+      navShop.classList.remove('active');
+      navContact.classList.add('active');
+      homeSection.style.display = 'none';
+      shopSection.style.display = 'none';
+      contactSection.style.display = 'block';
+    };
+
     // Load cart from localStorage on page load
-    window.onload = function () {
+    window.onload = () => {
       const savedCart = localStorage.getItem('cart');
       if (savedCart) {
         cart = JSON.parse(savedCart);
         renderCart();
       }
-    }
+    };
   </script>
 </body>
 </html>
